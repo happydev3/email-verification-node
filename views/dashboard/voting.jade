@@ -1,0 +1,155 @@
+extends layout
+block page-stylesheet
+  style.
+    .row.display-flex {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .row.display-flex > [class*='col-'] {
+      display: flex;
+      flex-direction: column;
+    }
+
+block main
+  main.col-xs-12.col-sm-8.col-lg-9.col-xl-10.pt-3.pl-4.ml-auto
+    header.page-header.row.justify-center
+      .col-md-6.col-lg-8
+        h1.float-left.text-center.text-md-left Community Voting
+      .dropdown.user-dropdown.col-md-6.col-lg-4.text-center.text-md-right
+        a#dropdownMenuLink.btn.btn-stripped.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          img.circle.float-left.profile-photo(src='/images/profile-pic.jpg', alt='profile photo', width='50', height='auto')
+          .username.mt-1
+            h4.mb-1 Andrea
+            h6.text-muted Whale
+        .dropdown-menu.dropdown-menu-right(style='margin-right: 1.5rem;', aria-labelledby='dropdownMenuLink')
+          a.dropdown-item(href='#')
+            em.fa.fa-user-circle.mr-1
+            |  View Profile
+          a.dropdown-item(href='#')
+            em.fa.fa-sliders.mr-1
+            |  Preferences
+          a.dropdown-item(href='#')
+            em.fa.fa-power-off.mr-1
+            |  Logout
+      .clear
+    section.row
+      .col-sm-12
+        section.row
+          .col-12
+            h3.mb-4 Pinned Proposals
+          .col-xl-4.py-2.col-lg-6.col-sm-12.mb-4
+            .card.text-white.bg-success.h-100
+              .card-header Coin-Of-The-Month (Feb)
+              .card-block
+                p(style='padding-bottom: 35px;')
+                  | You know how it works, every month pick the Coin-Of-The-Month, below you'll find our intelligent coin picks based on collective market analysis. Vote for your favourite now!
+                div(style='position: absolute; bottom:10px;')
+                  .btn-group
+                    button.btn.btn-secondary.dropdown-toggle.margin.mb-2(data-toggle='dropdown', aria-expanded='false')
+                      span.fa.fa-check
+                      |    Vote 
+                      span.caret
+                    ul.dropdown-menu(x-placement='bottom-start', style='position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;')
+                      li
+                        a(href='#')
+                          span.fa.fa-check
+                          |    ETHLend
+                      li
+                        a.font-bold(href='#') Cindicator
+                      li
+                        a(href='#') Bankera
+                      li.divider
+                      li
+                        a(href='#') Suggest New
+                  button.btn.btn-secondary.margin.mb-2(type='button')
+                    span.fa.fa-file
+                    |    More Info
+        section.row
+          .col-12
+            h3.mb-4 Active Proposals
+          .col-xl-4.py-2.col-lg-6.col-sm-12.mb-4
+            .card.h-100
+              .card-header Change rebalancing frequency
+              .card-block
+                p(style='padding-bottom: 35px;')
+                  b Overview:
+                  |  Change rebalancing period from weekly to fortnightly.
+                  br
+                  br
+                  b Benefit:
+                  |  Reduced trading fees.
+                div(style='position: absolute; bottom:10px;')
+                  .btn-group
+                    button.btn.btn-secondary.margin.mb-2(type='button')
+                      span.fa.fa-check
+                      |    Vote
+                  button.btn.btn-secondary.margin.mb-2(type='button')
+                    span.fa.fa-file
+                    |    More Info
+          .col-xl-4.py-2.col-lg-6.col-sm-12.mb-4.bg-default
+            .card.h-100
+              .card-header Exclude Bitconnect
+              .card-block
+                p(style='padding-bottom: 35px;')
+                  b Overview:
+                  |  Do not include Bitconnect in the fund as it seems to be a scam. 
+                  br
+                  br
+                  b Benefit:
+                  |  Fund security.
+                div(style='position: absolute; bottom:10px;')
+                  .btn-group
+                    button.btn.btn-secondary.margin.mb-2(type='button')
+                      span.fa.fa-check
+                      |    Vote
+                  button.btn.btn-secondary.margin.mb-2(type='button')
+                    span.fa.fa-file
+                    |    More Info
+        button#show-hide.btn.btn-secondary.mb-4(type='button', data-toggle='collapse', data-target='#historical', aria-expanded='false', aria-controls='collapseExample') Show Historical
+        section#historical.collapse.row
+          .col-12
+            h3.mb-4 Historical Proposals
+          .col-xl-4.py-2.col-lg-6.col-sm-12.mb-4
+            .card.text-white.bg-success.h-100
+              .card-header Coin-Of-The-Month (Jan)
+              .card-block
+                p(style='padding-bottom: 35px;')
+                  | You know how it works, every month pick the Coin-Of-The-Month, below you'll find our intelligent coin picks based on collective market analysis. Vote for your favourite now!
+                div(style='position: absolute; bottom:10px;')
+                  .btn-group
+                    button.btn.btn-secondary.dropdown-toggle.margin.mb-2(data-toggle='dropdown', aria-expanded='false')
+                      span.fa.fa-check
+                      |    Vote 
+                      span.caret
+                    ul.dropdown-menu(x-placement='bottom-start', style='position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;')
+                      li
+                        a(href='#')
+                          span.fa.fa-check
+                          |    ETHLend
+                      li
+                        a.font-bold(href='#') Cindicator
+                      li
+                        a(href='#') Bankera
+                      li.divider
+                      li
+                        a(href='#') Suggest New
+                  button.btn.btn-secondary.margin.mb-2(type='button')
+                    span.fa.fa-file
+                    |    Results
+block page-script
+  script.
+    $('.voting').addClass('active');
+
+    $('#historical').on('shown.bs.collapse', function () {
+      this.scrollIntoView();
+
+    });
+
+    $('#show-hide').click(function() {
+        if ($(this).text() === 'Show Historical') {
+            $(this).text('Hide Historical');
+        }
+        else {
+            $(this).text('Show Historical');
+        }
+    });

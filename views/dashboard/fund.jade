@@ -1,0 +1,140 @@
+extends layout
+block main
+  main.col-xs-12.col-sm-8.col-lg-9.col-xl-10.pt-3.pl-4.ml-auto
+    header.page-header.row.justify-center
+      .col-md-6.col-lg-8
+        h1.float-left.text-center.text-md-left Fund Performance
+      .dropdown.user-dropdown.col-md-6.col-lg-4.text-center.text-md-right
+        a#dropdownMenuLink.btn.btn-stripped.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          img.circle.float-left.profile-photo(src='/images/profile-pic.jpg', alt='profile photo', width='50', height='auto')
+          .username.mt-1
+            h4.mb-1 Andrea
+            h6.text-muted Whale
+        .dropdown-menu.dropdown-menu-right(style='margin-right: 1.5rem;', aria-labelledby='dropdownMenuLink')
+          a.dropdown-item(href='#')
+            em.fa.fa-user-circle.mr-1
+            |  View Profile
+          a.dropdown-item(href='#')
+            em.fa.fa-sliders.mr-1
+            |  Preferences
+          a.dropdown-item(href='#')
+            em.fa.fa-power-off.mr-1
+            |  Logout
+      .clear
+    section.row
+      .col-sm-12
+        section.row
+          .col-12.mb-2
+            .card.mb-4
+              .card-block
+                h3.card-title Market Value vs. NAV
+                .dropdown.card-title-btn-container
+                  button.btn.btn-sm.btn-subtle.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    em.fa.fa-cog
+                  .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
+                    a.dropdown-item(href='#')
+                      em.fa.fa-search.mr-1
+                      |  More info
+                    a.dropdown-item(href='#')
+                      em.fa.fa-thumb-tack.mr-1
+                      |  Pin Window
+                    a.dropdown-item(href='#')
+                      em.fa.fa-remove.mr-1
+                      |  Close Window
+                .canvas-wrapper
+                  canvas#line-chart.chart(height='200', width='600')
+            .card.mb-4
+              .card-block
+                h3.card-title Holdings
+                .dropdown.card-title-btn-container
+                  button.btn.btn-sm.btn-subtle.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    em.fa.fa-cog
+                  .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
+                    a.dropdown-item(href='#')
+                      em.fa.fa-search.mr-1
+                      |  More info
+                    a.dropdown-item(href='#')
+                      em.fa.fa-thumb-tack.mr-1
+                      |  Pin Window
+                    a.dropdown-item(href='#')
+                      em.fa.fa-remove.mr-1
+                      |  Close Window
+                h6.card-subtitle.mb-2.text-muted since last rebalance
+                .canvas-wrapper
+                  canvas#bar-chart.chart(height='300', width='600')
+                  #chartjs-legend.noselect
+          .col-sm-12.col-lg-6
+            .card.mb-4
+              .card-block
+                h3.card-title Indexed
+                .dropdown.card-title-btn-container
+                  button.btn.btn-sm.btn-subtle.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    em.fa.fa-cog
+                  .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
+                    a.dropdown-item(href='#')
+                      em.fa.fa-search.mr-1
+                      |  More info
+                    a.dropdown-item(href='#')
+                      em.fa.fa-thumb-tack.mr-1
+                      |  Pin Window
+                    a.dropdown-item(href='#')
+                      em.fa.fa-remove.mr-1
+                      |  Close Window
+                h6.card-subtitle.mb-2.text-muted vs. Selective Performance
+                .canvas-wrapper
+                  canvas#line-chart1.chart(height='300', width='600')
+          .col-sm-12.col-lg-6
+            .card.mb-4
+              .card-block
+                h3.card-title Holdings
+                .dropdown.card-title-btn-container
+                  button.btn.btn-sm.btn-subtle.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    em.fa.fa-cog
+                  .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
+                    a.dropdown-item(href='#')
+                      em.fa.fa-search.mr-1
+                      |  More info
+                    a.dropdown-item(href='#')
+                      em.fa.fa-thumb-tack.mr-1
+                      |  Pin Window
+                    a.dropdown-item(href='#')
+                      em.fa.fa-remove.mr-1
+                      |  Close Window
+                .canvas-wrapper
+                  canvas#pie-chart.chart(height='300', width='600')
+block page-script
+  script.
+    $('.fund').addClass('active');
+    window.onload = function () {
+      var chart1 = document.getElementById("line-chart").getContext("2d");
+      window.myLine = new Chart(chart1).Line(lineChartData, {
+        responsive: true,
+        scaleLineColor: "rgba(0,0,0,.2)",
+        scaleGridLineColor: "rgba(0,0,0,.05)",
+        scaleFontColor: "#c5c7cc",
+        multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
+      });
+      var chart2 = document.getElementById("bar-chart").getContext("2d");
+      window.myBar = new Chart(chart2).Bar(barChartData, {
+        responsive: true,
+        scaleLineColor: "rgba(0,0,0,.2)",
+        scaleGridLineColor: "rgba(0,0,0,.05)",
+        scaleFontColor: "#c5c7cc",
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+      });
+      var chart3 = document.getElementById("line-chart1").getContext("2d");
+      window.myLine1 = new Chart(chart3).Line(lineChartData1, {
+        responsive: true,
+        segmentShowStroke: false,
+        scaleShowLabels: false,
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+      });
+      var chart4 = document.getElementById("pie-chart").getContext("2d");
+      window.myPie = new Chart(chart4).Pie(pieData, {
+        responsive: true,
+        segmentShowStroke: false,
+        scaleShowLabels: true,
+        multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+      });
+      $("#pie-chart").html(myPie.generateLegend());
+    };

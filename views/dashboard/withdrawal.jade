@@ -1,0 +1,126 @@
+extends layout
+block main
+  main.col-xs-12.col-sm-8.col-lg-9.col-xl-10.pt-3.pl-4.ml-auto
+    header.page-header.row.justify-center
+      .col-md-6.col-lg-8
+        h1.float-left.text-center.text-md-left Withdraw Holdings
+      .dropdown.user-dropdown.col-md-6.col-lg-4.text-center.text-md-right
+        a#dropdownMenuLink.btn.btn-stripped.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          img.circle.float-left.profile-photo(src='/images/profile-pic.jpg', alt='profile photo', width='50', height='auto')
+          .username.mt-1
+            h4.mb-1 Andrea
+            h6.text-muted Whale
+        .dropdown-menu.dropdown-menu-right(style='margin-right: 1.5rem;', aria-labelledby='dropdownMenuLink')
+          a.dropdown-item(href='#')
+            em.fa.fa-user-circle.mr-1
+            |  View Profile
+          a.dropdown-item(href='#')
+            em.fa.fa-sliders.mr-1
+            |  Preferences
+          a.dropdown-item(href='#')
+            em.fa.fa-power-off.mr-1
+            |  Logout
+      .clear
+    section.row
+      .col-sm-12
+        section.row
+          .col-lg-6.mb-4.bg-default
+            .card.h-100.mb-3.text-center
+              .card-header Withdraw your Rockt Now
+              #fox.card-block
+                script(src='/js/bundle.js')
+                .col-lg-12
+                  .col-lg-12.col-sm-12
+                    .input-group
+                      input#rockt.form-control(type='text')
+                      span.input-group-addon ROCKT
+                    br
+                    .input-group
+                      input#ether.form-control(type='text')
+                      span.input-group-addon ETHER
+                    br
+                    button.btn.btn-lg.btn-primary(type='button') Withdraw!
+          .col-lg-6.mb-4.bg-default
+            .card.h-100.mb-3.text-center
+              .card-header Withdrawal Value (Per ROCKT)
+              .card-block
+                h5.mt-2.mb-1 Current NAV
+                p#nav-value.mb-1
+                br
+                h5.mt-2.mb-1 Update In:
+                #easypiechart-1.easypiechart(data-percent='100')
+                .divider(style='margin-top: 1rem;')
+                p.mb-1
+                  | Please note, the ROCKT tokens will be withdrawn in ETH not $, the rate will be converted using the latest USD price of ETH according to CoinMarketCap
+block page-script
+  script.
+    $('.withdrawal').addClass('active');
+    window.onload = function () {
+      var chart1 = document.getElementById("line-chart").getContext("2d");
+      window.myLine = new Chart(chart1).Line(lineChartData, {
+        responsive: true,
+        scaleLineColor: "rgba(0,0,0,.2)",
+        scaleGridLineColor: "rgba(0,0,0,.05)",
+        scaleFontColor: "#c5c7cc"
+      });
+      var chart2 = document.getElementById("bar-chart").getContext("2d");
+      window.myBar = new Chart(chart2).Bar(barChartData, {
+        responsive: true,
+        scaleLineColor: "rgba(0,0,0,.2)",
+        scaleGridLineColor: "rgba(0,0,0,.05)",
+        scaleFontColor: "#c5c7cc"
+      });
+      var chart3 = document.getElementById("doughnut-chart").getContext("2d");
+        window.myDoughnut = new Chart(chart3).Doughnut(doughnutData, {
+        responsive: true,
+        segmentShowStroke: false
+      });
+      var chart4 = document.getElementById("pie-chart").getContext("2d");
+        window.myPie = new Chart(chart4).Pie(pieData, {
+        responsive: true,
+        segmentShowStroke: false
+      });
+      var chart5 = document.getElementById("radar-chart").getContext("2d");
+      window.myRadarChart = new Chart(chart5).Radar(radarData, {
+        responsive: true,
+        scaleLineColor: "rgba(0,0,0,.05)",
+        angleLineColor: "rgba(0,0,0,.2)"
+      });
+      var chart6 = document.getElementById("polar-area-chart").getContext("2d");
+      window.myPolarAreaChart = new Chart(chart6).PolarArea(polarData, {
+        responsive: true,
+        scaleLineColor: "rgba(0,0,0,.2)",
+        segmentShowStroke: false
+      });
+      };
+
+      function sec2human(seconds) {
+        sec = seconds % 60;
+        min = parseInt(seconds / 60);
+        if(sec.toString().length == 1) { // padding
+            sec = "0" + sec;
+        }
+        return min + ":" + sec;
+      }
+
+      var countdown = 300;
+
+
+      setInterval(function() {
+        countdown = --countdown <= 0 ? 300 : countdown;
+        $('#easypiechart-1').data('easyPieChart').update((countdown/300)*100);
+        $('#time-since').text(sec2human(countdown));
+        $('#nav-value').text('$5.04 (0.00523386226 ETH)');
+
+      }, 1000);
+      $('#easypiechart-1 .percent').css({
+        "line-height": $('#easypiechart-1 > canvas').attr('height') + 'px'
+      })
+
+
+      $('#rockt').change(function() {
+        $('#ether').val($('#rockt').val()*0.00523386226)
+      });
+      $('#ether').change(function() {
+        $('#rockt').val($('#ether').val()/0.00523386226)
+      });

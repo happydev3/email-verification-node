@@ -1,0 +1,51 @@
+extends layout
+block main
+  main.col-xs-12.col-sm-8.col-lg-9.col-xl-10.pt-3.pl-4.ml-auto
+    header.page-header.row.justify-center
+      .col-md-6.col-lg-8
+        h1.float-left.text-center.text-md-left My Cards
+      .dropdown.user-dropdown.col-md-6.col-lg-4.text-center.text-md-right
+        a#dropdownMenuLink.btn.btn-stripped.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          img.circle.float-left.profile-photo(src='/images/profile-pic.jpg', alt='profile photo', width='50', height='auto')
+          .username.mt-1
+            h4.mb-1 Andrea
+            h6.text-muted Whale
+        .dropdown-menu.dropdown-menu-right(style='margin-right: 1.5rem;', aria-labelledby='dropdownMenuLink')
+          a.dropdown-item(href='#')
+            em.fa.fa-user-circle.mr-1
+            |  View Profile
+          a.dropdown-item(href='#')
+            em.fa.fa-sliders.mr-1
+            |  Preferences
+          a.dropdown-item(href='#')
+            em.fa.fa-power-off.mr-1
+            |  Logout
+      .clear
+    section.row
+      .col-sm-12
+        section.row
+          .col-12
+            h3.mb-4 Active Cards
+          .col-lg-6.mb-4
+            .card
+              .card-header Andrea's Rockt Card
+              .card-block
+                p
+                  img.image(src='/images/cc.png', style='width: 100px;')
+                p
+                  b Credit Limit:
+                  |  10,500.21 USD
+                  br
+                  b Available Balance:
+                  |  5,672.39 USD
+                  br
+                  br
+                button.btn.btn-secondary.margin(type='button')
+                  span.fa.fa-dollar
+                  |    Payments
+                button.btn.btn-secondary.margin(type='button')
+                  span.fa.fa-lock
+                  |    Lock
+block page-script
+  script.
+    $('.cards').addClass('active');

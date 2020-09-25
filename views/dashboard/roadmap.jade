@@ -1,0 +1,132 @@
+extends layout
+block main
+  main.col-xs-12.col-sm-8.col-lg-9.col-xl-10.pt-3.pl-4.ml-auto
+    header.page-header.row.justify-center
+      .col-md-6.col-lg-8
+        h1.float-left.text-center.text-md-left Roadmap
+      .dropdown.user-dropdown.col-md-6.col-lg-4.text-center.text-md-right
+        a#dropdownMenuLink.btn.btn-stripped.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          img.circle.float-left.profile-photo(src='/images/profile-pic.jpg', alt='profile photo', width='50', height='auto')
+          .username.mt-1
+            h4.mb-1 Andrea
+            h6.text-muted Whale
+        .dropdown-menu.dropdown-menu-right(style='margin-right: 1.5rem;', aria-labelledby='dropdownMenuLink')
+          a.dropdown-item(href='#')
+            em.fa.fa-user-circle.mr-1
+            |  View Profile
+          a.dropdown-item(href='#')
+            em.fa.fa-sliders.mr-1
+            |  Preferences
+          a.dropdown-item(href='#')
+            em.fa.fa-power-off.mr-1
+            |  Logout
+      .clear
+    section.row
+      .col-sm-12
+        section.row
+          .col-sm-12.col-md-12
+            .card.mb-4
+              .card-block
+                h3.card-title Upcoming Milestones
+                .dropdown.card-title-btn-container
+                  button.btn.btn-sm.btn-subtle.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    em.fa.fa-cog
+                  .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
+                    a.dropdown-item(href='#')
+                      em.fa.fa-search.mr-1
+                      |  More info
+                    a.dropdown-item(href='#')
+                      em.fa.fa-thumb-tack.mr-1
+                      |  Pin Window
+                    a.dropdown-item(href='#')
+                      em.fa.fa-remove.mr-1
+                      |  Close Window
+                h6.card-subtitle.mb-2.text-muted
+                ul.timeline
+                  li
+                    .timeline-badge
+                      em.fa.fa-check
+                    .timeline-panel
+                      .timeline-heading
+                        h6.timeline-title.mt-2.text-muted 31st April 2018
+                        h5.timeline-title.mt-2 Token Generation Event
+                      .timeline-body
+                        p
+                          | The Rockt Token Generation Event will end. There will be no further tokens minted, mined, or created in any other way after this date.
+                  li
+                    .timeline-badge
+                      em.fa.fa-pencil-square-o
+                    .timeline-panel
+                      .timeline-heading
+                        h6.timeline-title.mt-2.text-muted 31st May 2018
+                        h5.timeline-title.mt-2 External Audit
+                      .timeline-body
+                        p
+                          | An external audit will be conducted to give you peace of mind when it comes to Rockt's holdings. Once this is complete, tokens will be released for trading.
+                  li
+                    .timeline-badge
+                      em.fa.fa-list
+                    .timeline-panel
+                      .timeline-heading
+                        h6.timeline-title.mt-2.text-muted Q2 2018
+                        h5.timeline-title.mt-2 Rockt Portal v0.1
+                      .timeline-body
+                        p
+                          | Rockt Portal v0.1 will be launched, this will provide the following features:
+                          ul
+                            li
+                              i.glyphicon.glyphicon-chevron-right
+                              | Withdrawal of Holdings
+                            li
+                              i.glyphicon.glyphicon-chevron-right
+                              | Basic Voting
+                  li
+                    .timeline-badge
+                      em.fa.fa-user
+                    .timeline-panel
+                      .timeline-heading
+                        h6.timeline-title.mt-2.text-muted Q2 2018
+                        h5.timeline-title.mt-2 Legal Review of Operating Structure
+                      .timeline-body
+                        p
+                          | Rockt will conduct a legal review of all operations and structures post-launch to ensure we are still operating using the most appropriate structure.
+                  li
+                    .timeline-badge
+                      em.fa.fa-list
+                    .timeline-panel
+                      .timeline-heading
+                        h6.timeline-title.mt-2.text-muted Q3 2018
+                        h5.timeline-title.mt-2 Rockt Portal v0.2
+                      .timeline-body
+                        p
+                          | Rockt Portal v0.2 will be launched, this will provide the following features:
+                          ul
+                            li
+                              i.glyphicon.glyphicon-chevron-right
+                              | Collective Market Intelligence
+                            li
+                              i.glyphicon.glyphicon-chevron-right
+                              | Advanced Voting
+                  li
+                    .timeline-badge
+                      em.fa.fa-cogs
+                    .timeline-panel
+                      .timeline-heading
+                        h6.timeline-title.mt-2.text-muted Q4 2018
+                        h5.timeline-title.mt-2 AI Trading
+                      .timeline-body
+                        p
+                          | AI trading will be introduced to reduce fees, profit through arbitrage, and optimise trade timing.
+                  li
+                    .timeline-badge
+                      em.fa.fa-credit-card
+                    .timeline-panel
+                      .timeline-heading
+                        h6.timeline-title.mt-2.text-muted Q1 2019
+                        h5.timeline-title.mt-2 Rockt Card Launch
+                      .timeline-body
+                        p
+                          | The Rockt Card will enable token holders to stake their tokens to free up the value locked inside, this innovative approach will mean you can keep your Rockt tokens, while treating yourself to a well deserved holiday, car, or anything else you desire!
+block page-script
+  script.
+    $('.roadmap').addClass('active');

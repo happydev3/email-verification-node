@@ -1,0 +1,265 @@
+extends layout
+block main
+  main.col-xs-12.col-sm-8.col-lg-9.col-xl-10.pt-3.pl-4.ml-auto
+    header.page-header.row.justify-center
+      .col-md-6.col-lg-8
+        h1.float-left.text-center.text-md-left Dashboard
+      .dropdown.user-dropdown.col-md-6.col-lg-4.text-center.text-md-right
+        a#dropdownMenuLink.btn.btn-stripped.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          img.circle.float-left.profile-photo(src='/images/profile-pic.jpg', alt='profile photo', width='50', height='auto')
+          .username.mt-1
+            h4.mb-1 Andrea
+            h6.text-muted Whale
+        .dropdown-menu.dropdown-menu-right(style='margin-right: 1.5rem;', aria-labelledby='dropdownMenuLink')
+          a.dropdown-item(href='#')
+            em.fa.fa-user-circle.mr-1
+            |  View Profile
+          a.dropdown-item(href='#')
+            em.fa.fa-sliders.mr-1
+            |  Preferences
+          a.dropdown-item(href='#')
+            em.fa.fa-power-off.mr-1
+            |  Logout
+      .clear
+    section.row
+      .col-sm-12
+        section.row
+          .col-md-12.col-lg-8
+            .jumbotron
+              h1.mb-4 Welcome to Rockt, Andrea!
+              p.lead
+                | We hope you find all the information you need here. We're excited to have you onboard!
+              p.lead
+                a.btn.btn-primary.btn-lg.mt-2(href='#', role='button') Learn more about Rockt
+            .card.mb-4
+              .card-block
+                h3.card-title Overview
+                .dropdown.card-title-btn-container
+                  button.btn.btn-sm.btn-subtle(type='button')
+                    em.fa.fa-list-ul
+                    |  View All
+                  button.btn.btn-sm.btn-subtle.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    em.fa.fa-cog
+                  .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
+                    a.dropdown-item(href='#')
+                      em.fa.fa-search.mr-1
+                      |  More info
+                    a.dropdown-item(href='#')
+                      em.fa.fa-thumb-tack.mr-1
+                      |  Pin Window
+                    a.dropdown-item(href='#')
+                      em.fa.fa-remove.mr-1
+                      |  Close Window
+                h6.card-subtitle.mb-2.text-muted Market Price vs. NAV
+                .canvas-wrapper
+                  canvas#line-chart.chart(height='200', width='600')
+            .card.mb-4
+              .card-block
+                h3.card-title Recent Transactions
+                .dropdown.card-title-btn-container
+                  button.btn.btn-sm.btn-subtle(type='button')
+                    em.fa.fa-list-ul
+                    |  View All
+                  button.btn.btn-sm.btn-subtle.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    em.fa.fa-cog
+                  .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
+                    a.dropdown-item(href='#')
+                      em.fa.fa-search.mr-1
+                      |  More info
+                    a.dropdown-item(href='#')
+                      em.fa.fa-thumb-tack.mr-1
+                      |  Pin Window
+                    a.dropdown-item(href='#')
+                      em.fa.fa-remove.mr-1
+                      |  Close Window
+                .table-responsive
+                  table.table.table-striped
+                    thead
+                      tr
+                        th ID
+                        th Type
+                        th Cost
+                        th Description
+                        th Status
+                    tbody
+                      tr
+                        td 0056
+                        td Card Spend
+                        td 500.00 USD
+                        td Coinbase
+                        td Confirmed
+                      tr
+                        td 0055
+                        td Card Spend
+                        td 12.00 AUD
+                        td Ebay.com
+                        td Confirmed
+                      tr
+                        td 0054
+                        td Card Spend
+                        td 20.00 USD
+                        td The Economist
+                        td Confirmed
+                      tr
+                        td 0053
+                        td Withdrawl
+                        td -500 ROCKT
+                        td NAV Liquidation
+                        td Pending KYC
+            .card.mb-4
+              .card-block
+                h3.card-title Articles
+                .dropdown.card-title-btn-container
+                  button.btn.btn-sm.btn-subtle(type='button')
+                    em.fa.fa-list-ul
+                    |  View All
+                  button.btn.btn-sm.btn-subtle.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    em.fa.fa-cog
+                  .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
+                    a.dropdown-item(href='#')
+                      em.fa.fa-search.mr-1
+                      |  More info
+                    a.dropdown-item(href='#')
+                      em.fa.fa-thumb-tack.mr-1
+                      |  Pin Window
+                    a.dropdown-item(href='#')
+                      em.fa.fa-remove.mr-1
+                      |  Close Window
+                h6.card-subtitle.mb-2.text-muted Latest news
+                .divider(style='margin-top: 1rem;')
+                .articles-container
+                  .article.border-bottom
+                    .col-xs-12
+                      .row
+                        .col-2.date
+                          .large 15
+                          .text-muted May
+                        .col-10
+                          h4
+                            a(href='#') Rockt Voting Portal Released
+                          p It's full speed ahead at Rockt with the Voting Portal being released.
+                    .clear
+                  // End .article
+                  .article
+                    .col-xs-12
+                      .row
+                        .col-2.date
+                          .large 30
+                          .text-muted April
+                        .col-10
+                          h4
+                            a(href='#') Rockt ICO Reaches Hard Cap
+                          p
+                            | Rockt ICO fully subscribed with all functions of it's Rockt Portal looking to be completed ahead of time!
+                    .clear
+                  // End .article
+          .col-md-12.col-lg-4
+            .card.mb-4
+              .card-block
+                h3.card-title Top Users
+                h6.card-subtitle.mb-2.text-muted Most active this week
+                .user-progress.justify-center
+                  .col-sm-3.col-md-2(style='padding: 0;')
+                    img.circle.profile-photo(src='/images/profile-pic.jpg', alt='profile photo', style='width: 100%; max-width: 100px;')
+                  .col-sm-9.col-md-10
+                    h6.pt-1 Andrea Smith
+                    .progress.progress-custom
+                      .progress-bar.bg-primary(style='width: 75%', role='progressbar', aria-valuenow='75', aria-valuemin='0', aria-valuemax='100')
+                .user-progress.justify-center
+                  .col-sm-3.col-md-2(style='padding: 0;')
+                    img.circle.profile-photo(src='/images/profile-pic1.jpg', alt='profile photo', style='width: 100%; max-width: 100px;')
+                  .col-sm-9.col-md-10
+                    h6.pt-1 Elena Li
+                    .progress.progress-custom
+                      .progress-bar.bg-primary(style='width: 50%', role='progressbar', aria-valuenow='50', aria-valuemin='0', aria-valuemax='100')
+                .user-progress.justify-center
+                  .col-sm-3.col-md-2(style='padding: 0;')
+                    img.circle.profile-photo(src='/images/profile-pic2.jpg', alt='profile photo', style='width: 100%; max-width: 100px;')
+                  .col-sm-9.col-md-10
+                    h6.pt-1 Egidio Rigby
+                    .progress.progress-custom
+                      .progress-bar.bg-primary(style='width: 25%', role='progressbar', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100')
+                .divider
+                h3.card-title Timeline
+                h6.card-subtitle.mb-2.text-muted What's coming up
+                ul.timeline
+                  li
+                    .timeline-badge.primary
+                      em.fa.fa-credit-card
+                    .timeline-panel
+                      .timeline-heading
+                        h5.timeline-title.mt-2 Rockt Cards Go-Live
+                      .timeline-body
+                        p
+                          | Ready to unlock the value stored in your crypto? A Rockt Card will help you achieve your goals now!
+                  li
+                    .timeline-badge
+                      em.fa.fa-pencil-square-o
+                    .timeline-panel
+                      .timeline-heading
+                        h5.timeline-title.mt-2 Voting Portal Upgrade
+                      .timeline-body
+                        p
+                          | The voting portal will be upgraded to allow pledging of tokens to help fund specific developments.
+                  li
+                    .timeline-badge
+                      em.fa.fa-bar-chart
+                    .timeline-panel
+                      .timeline-heading
+                        h5.timeline-title.mt-2 Annual Report
+                      .timeline-body
+                        p The Rockt annual fund performance report will be released.
+            .card.mb-4
+              .card-block
+                h3.card-title Todo List
+                .dropdown.card-title-btn-container
+                  button.btn.btn-sm.btn-subtle.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    em.fa.fa-cog
+                  .dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownMenuButton')
+                    a.dropdown-item(href='#')
+                      em.fa.fa-search.mr-1
+                      |  More info
+                    a.dropdown-item(href='#')
+                      em.fa.fa-thumb-tack.mr-1
+                      |  Pin Window
+                    a.dropdown-item(href='#')
+                      em.fa.fa-remove.mr-1
+                      |  Close Window
+                ul.todo-list.mt-2
+                  li.todo-list-item
+                    .checkbox.mt-1.mb-2
+                      label.custom-control.custom-checkbox
+                        input.custom-control-input(checked='', type='checkbox')
+                        span.custom-control-indicator
+                        span.custom-control-description Complete KYC
+                      .float-right.action-buttons
+                        a.trash(href='#')
+                          em.fa.fa-trash
+                  li.todo-list-item
+                    .checkbox.mt-1.mb-2
+                      label.custom-control.custom-checkbox
+                        input.custom-control-input(type='checkbox')
+                        span.custom-control-indicator
+                        span.custom-control-description Apply for a Rockt Card
+                      .float-right.action-buttons
+                        a.trash(href='#')
+                          em.fa.fa-trash
+                .card-footer.todo-list-footer
+                  .input-group
+                    input#btn-input.form-control.input-md(type='text', placeholder='Add new task')
+                    span.input-group-btn
+                      button#btn-todo.btn.btn-primary.btn-md Add
+block page-script
+  script.
+    window.onload = function () {
+      var chart1 = document.getElementById("line-chart").getContext("2d");
+      window.myLine = new Chart(chart1).Line(lineChartData, {
+        responsive: true,
+        scaleLineColor: "rgba(0,0,0,.2)",
+        scaleGridLineColor: "rgba(0,0,0,.05)",
+        scaleFontColor: "#c5c7cc",
+        showDatasetLabels : true,
+        multiTooltipTemplate: "<%= datasetLabel %>: $<%= value %>"
+      });
+    };
+    $('.dashboard').addClass('active');
